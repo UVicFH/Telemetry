@@ -1,0 +1,29 @@
+{
+  "name": "uvicfh_node",
+  "version": "1.0.0",
+  "description": "Rowdy Tele proj",
+  "main": "index.js",
+  "scripts": {
+    "test": "fh_test",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/marclave/UVicFH_NodeWebServer.git"
+  },
+  "keywords": [
+    "uvic",
+    "formula",
+    "hybrid"
+  ],
+  "author": "Marc Laventure",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/marclave/UVicFH_NodeWebServer/issues"
+  },
+  "homepage": "https://github.com/marclave/UVicFH_NodeWebServer#readme",
+  "dependencies": {
+    "express": "^4.13.4",
+    "serialport": "^2.0.6"
+  }
+}
