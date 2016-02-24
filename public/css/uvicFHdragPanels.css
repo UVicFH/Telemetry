@@ -1,3 +1,7 @@
 #draggablePanelList .panel-heading {
         cursor: move;
     }
+
+#draggablePanelList1 .panel-heading {
+    cursor: move;
+}

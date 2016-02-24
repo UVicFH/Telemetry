@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Lilly | Wifi Setup</title>
+    <title>UVic Hybrid</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     
@@ -35,25 +35,46 @@
         <!-- Main content MARC PUT STUFF HERE -->
         <section class="content text-center">
 
+          <!-- Panel shit bruh -->
           <div class="row">
             <div class="col-lg-12 col-lg-offset-3">
               <ul id="draggablePanelList" class="list-unstyled">
                 <div class="col-lg-2">
                   <li class="panel panel-info">
-                      <div class="panel-heading">You can drag this panel.</div>
-                      <div class="panel-body">Content ...</div>
+                      <div class="panel-heading">Speed</div>
+                      <div class="panel-body">7 kph</div>
                   </li>
                 </div>
                 <div class="col-lg-2">
                   <li class="panel panel-info">
-                      <div class="panel-heading">You can drag this panel too.</div>
-                      <div class="panel-body">Content ...</div>
+                      <div class="panel-heading">Temp</div>
+                      <div class="panel-body">Hot</div>
                   </li>
                 </div>
                 <div class="col-lg-2">
                   <li class="panel panel-info">
-                      <div class="panel-heading">You can drag this panel too.</div>
-                      <div class="panel-body">Content ...</div>
+                      <div class="panel-heading">RPM</div>
+                      <div class="panel-body">9000</div>
+                  </li>
+                </div>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Graph for fun -->
+          <div class="row">
+            <div class="col-lg-12">
+              <ul id="draggablePanelList1" class="list-unstyled">
+                <div class="col-lg-6">
+                  <li class="panel panel-info">
+                          <div class="panel-heading">Simple Graph</div>
+                          <div class="panel-body" id="tester" style="width:600px;height:250px;"></div>
+                  </li>
+                </div>
+                <div class="col-lg-6">
+                  <li class="panel panel-info">
+                          <div class="panel-heading">Simpler Graph</div>
+                          <div class="panel-body" id="tester1" style="width:600px;height:250px;"></div>
                   </li>
                 </div>
               </ul>
@@ -81,5 +102,12 @@
     <!-- Uvic FH Drag Panels -->
     <script src="/jQuery/jquery-ui.min.js"></script>
     <script src="/jQuery/uvicFHdragPanels.js"></script>
+
+    <!-- Plotly Bundle -->
+    <script src="/js/plotly-latest.min.js"></script>
+
+    <!-- Test graph -->
+    <script src="/jQuery/uvicFHgraphTest.js"></script>
+
   </body>
 </html>
