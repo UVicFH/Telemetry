@@ -27,7 +27,7 @@ app.listen(3000,function(){
   console.log("Live at Port 3000");
 });
 
-var serialPort = new SerialPort("/dev/ttys013", {
+var serialPort = new SerialPort("/dev/ttyUSB0", {
   baudrate: 9600,
   parser: serialport.parsers.raw
 });
