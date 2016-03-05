@@ -34,16 +34,8 @@ server.listen(3000,function(){
     console.log("Live at Port 3000");
 });
 
-var interval = setInterval(function(str1, str2) {
-    io.emit('canMessageHandlerUI', { hello: 'world' });
-  console.log(str1 + " " + str2);
-}, 1000, "Hello.", "How are you?");
-
 io.on('connection', function (socket) {
-  io.emit('canMessageHandlerUI', { hello: 'world' });
-  socket.on('my other event', function (data) {
-    console.log(data);
-  });
+    // Might wanna do something better haha
 });
 
 var serialPort = new SerialPort("/dev/ttyUSB0", {
@@ -59,8 +51,6 @@ serialPort.on('open',function() {
 serialPort.on('data', function(data) {
     var jsonData = {};
     jsonData = tools.processCanMessage(data);
-
-    //console.log(jsonData);
 
     if (jsonData)
     {

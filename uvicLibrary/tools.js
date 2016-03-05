@@ -12,12 +12,6 @@ function messageOne_private(pCanDataArray)
 	var throttlePercent = pCanDataArray[4] >> 1;
 	var fuel = pCanDataArray[5];
 
-	// console.log("Temp: " + engineTemp);
-	// console.log("Torque: " + engineTorque);
-	// console.log("RPM: " + engineRpm);
-	// console.log("throttlePercent: " + throttlePercent);
-	// console.log("fuel: " + fuel);
-
 	jsonData = {
 		"canId" : 0x100,
 		"engineTemp" : engineTemp,
@@ -62,9 +56,6 @@ function messageFour_private(pCanDataArray)
 	// TODO m: implement
 	var currentGear = (pCanDataArray[0] >> 2) & 0xF;
 	var vehicleSpeed = pCanDataArray[1] >> 1;
-
-	console.log("currentGear: " + currentGear);
-	console.log("vehicleSpeed: " + vehicleSpeed);
 
 	jsonData = {
 		"canId" : 0x400,
