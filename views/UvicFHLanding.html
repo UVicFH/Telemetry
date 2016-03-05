@@ -41,20 +41,20 @@
               <ul id="draggablePanelList" class="list-unstyled">
                 <div class="col-lg-2">
                   <li class="panel panel-info">
-                      <div class="panel-heading">Speed</div>
-                      <div class="panel-body">7 kph</div>
+                      <div class="panel-heading">Throttle (%)</div>
+                      <div id="throttleVal"class="panel-body">00</div>
                   </li>
                 </div>
                 <div class="col-lg-2">
                   <li class="panel panel-info">
-                      <div class="panel-heading">Temp</div>
-                      <div class="panel-body">Hot</div>
+                      <div class="panel-heading">Temp (F)</div>
+                      <div id="tempVal"class="panel-body">80</div>
                   </li>
                 </div>
                 <div class="col-lg-2">
                   <li class="panel panel-info">
                       <div class="panel-heading">RPM</div>
-                      <div class="panel-body">9000</div>
+                      <div id="rpmVal"class="panel-body">00</div>
                   </li>
                 </div>
               </ul>
@@ -108,6 +108,10 @@
 
     <!-- Test graph -->
     <script src="/jQuery/uvicFHgraphTest.js"></script>
+
+    <!-- Uvic Can Data -->
+    <script src="/js/socket.io.js"></script>
+    <script src="/jQuery/canMessageHandler.js"></script>
 
   </body>
 </html>
