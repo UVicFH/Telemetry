@@ -37,7 +37,7 @@
 
           <!-- Panel shit bruh -->
           <div class="row">
-            <div class="col-lg-12 col-lg-offset-3">
+            <div class="col-lg-12 col-lg-offset-1">
               <ul id="draggablePanelList" class="list-unstyled">
                 <div class="col-lg-2">
                   <li class="panel panel-info">
@@ -57,12 +57,66 @@
                       <div id="rpmVal"class="panel-body">00</div>
                   </li>
                 </div>
+                <div class="col-lg-2">
+                  <li class="panel panel-info">
+                      <div class="panel-heading">Speed (kph)</div>
+                      <div id="speedVal"class="panel-body">00</div>
+                  </li>
+                </div>
+                <div class="col-lg-2">
+                  <li class="panel panel-info">
+                      <div class="panel-heading">Current Gear</div>
+                      <div id="currentGear"class="panel-body">00</div>
+                  </li>
+                </div>
               </ul>
             </div>
           </div>
 
-          <!-- Graph for fun -->
+          <br>
+          <br>
+
+          <!-- UVic FH Graphs -->
           <div class="row">
+            <div class="col-lg-12 col-lg-offset-3">
+              <div class="col-lg-6">
+                <h3 style="text-center">
+                  Speed Vs Time
+                </h3>
+                <br>
+                <div id="speedVtime" style="width:600px;height:250px;"></div>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="row">
+            <div class="col-lg-12 col-lg-offset-3">
+              <div class="col-lg-6">
+                <h3 style="text-center">
+                  Rpm Vs Time
+                </h3>
+                <br>
+                <div id="rpmVtime" style="width:600px;height:250px;"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-lg-12 col-lg-offset-3">
+              <div class="col-lg-6">
+                <h3 style="text-center">
+                  Temp Vs Time
+                </h3>
+                <br>
+
+                <div id="tempVtime" style="width:600px;height:250px;"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Graph for fun -->
+          <!-- <div class="row">
             <div class="col-lg-12">
               <ul id="draggablePanelList1" class="list-unstyled">
                 <div class="col-lg-6">
@@ -79,7 +133,7 @@
                 </div>
               </ul>
             </div>
-          </div>
+          </div> -->
 
         </section><!-- /.content -->
       </div><!-- /.content-wrapper -->
