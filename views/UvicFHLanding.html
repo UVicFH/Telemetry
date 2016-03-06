@@ -1,5 +1,26 @@
 <!DOCTYPE html>
 <html>
+  <style type="text/css">
+
+
+  svg {
+  font: 10px sans-serif;
+  }
+  .line {
+    fill: none;
+    stroke: #000;
+    stroke-width: 1.5px;
+  }
+  .axis path,
+  .axis line {
+    fill: none;
+    stroke: #000;
+    shape-rendering: crispEdges;
+  }
+
+  </style>
+
+
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -47,8 +68,8 @@
                 </div>
                 <div class="col-lg-2">
                   <li class="panel panel-info">
-                      <div class="panel-heading">Temp (F)</div>
-                      <div id="tempVal"class="panel-body">80</div>
+                      <div class="panel-heading">Temp (C)</div>
+                      <div id="tempVal"class="panel-body">00</div>
                   </li>
                 </div>
                 <div class="col-lg-2">
@@ -76,64 +97,51 @@
           <br>
           <br>
 
-          <!-- UVic FH Graphs -->
-          <div class="row">
+
+           <!-- UVic FH Graphs -->
+
+           <div class="row">
             <div class="col-lg-12 col-lg-offset-3">
               <div class="col-lg-6">
                 <h3 style="text-center">
-                  Speed Vs Time
+                  Throttle Vs Time
                 </h3>
-                <br>
-                <div id="speedVtime" style="width:600px;height:250px;"></div>
+              </div>
+            </div>
+          </div>
+
+          <br>
+
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="col-lg-6">
+                <div id="throttleVtime"></div>
               </div>
             </div>
           </div>
 
 
-          <div class="row">
-            <div class="col-lg-12 col-lg-offset-3">
-              <div class="col-lg-6">
-                <h3 style="text-center">
-                  Rpm Vs Time
-                </h3>
-                <br>
-                <div id="rpmVtime" style="width:600px;height:250px;"></div>
-              </div>
-            </div>
-          </div>
-
+          
           <div class="row">
             <div class="col-lg-12 col-lg-offset-3">
               <div class="col-lg-6">
                 <h3 style="text-center">
                   Temp Vs Time
                 </h3>
-                <br>
-
-                <div id="tempVtime" style="width:600px;height:250px;"></div>
               </div>
             </div>
           </div>
 
-          <!-- Graph for fun -->
-          <!-- <div class="row">
+          <br>
+
+          <div class="row">
             <div class="col-lg-12">
-              <ul id="draggablePanelList1" class="list-unstyled">
-                <div class="col-lg-6">
-                  <li class="panel panel-info">
-                          <div class="panel-heading">Simple Graph</div>
-                          <div class="panel-body" id="tester" style="width:600px;height:250px;"></div>
-                  </li>
-                </div>
-                <div class="col-lg-6">
-                  <li class="panel panel-info">
-                          <div class="panel-heading">Simpler Graph</div>
-                          <div class="panel-body" id="tester1" style="width:600px;height:250px;"></div>
-                  </li>
-                </div>
-              </ul>
+              <div class="col-lg-6">
+                <div id="tempVtime"></div>
+                <!-- style="width:600px;height:250px;" -->
+              </div>
             </div>
-          </div> -->
+          </div>
 
         </section><!-- /.content -->
       </div><!-- /.content-wrapper -->
@@ -158,7 +166,8 @@
     <script src="/jQuery/uvicFHdragPanels.js"></script>
 
     <!-- Plotly Bundle -->
-    <script src="/js/plotly-latest.min.js"></script>
+    <!-- <script src="/js/plotly-latest.min.js"></script> -->
+    <script src="/js/d3.min.js"></script>
 
     <!-- Test graph -->
     <script src="/jQuery/uvicFHgraphTest.js"></script>

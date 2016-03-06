@@ -1,60 +1,148 @@
 $( document ).ready(function() {
-	var date = new Date();
-
-	var rpmArray = [0];
-	var rpmTimeArray = [date.getSeconds()]
-
-	var speedArray = [0];
-	var speedTimeArray = [date.getSeconds()]
-
-	var tempArray = [0];
-	var tempTimeArray = [date.getSeconds()]
-
+	var startTime = new Date();
 
 	var socket = io.connect('http://0.0.0.0:3000');
 
-	SPEEDVTIME = document.getElementById('speedVtime');
 
-	Plotly.plot( SPEEDVTIME, [{
-		x: speedTimeArray,
-		y: speedArray }], {
-	margin: { t: 0 } } );
+	var n = 40,
+    random = d3.random.normal(0, .2),
+    tempVtimeData = d3.range(200).map(random);
 
-	RPMVTIME = document.getElementById('rpmVtime');
-	Plotly.plot( RPMVTIME, [{
-		x: rpmTimeArray,
-		y: rpmArray }], {
-	margin: { t: 0 } } );
+	var tempVtimemargin = {top: 20, right: 20, bottom: 20, left: 40},
+	    width = 1200 - tempVtimemargin.left - tempVtimemargin.right,
+	    height = 500 - tempVtimemargin.top - tempVtimemargin.bottom;
 
-	TEMPVTIME = document.getElementById('tempVtime');
-	Plotly.plot( TEMPVTIME, [{
-		x: tempTimeArray,
-		y: tempArray }], {
-	margin: { t: 0 } } );
+	var tempVtimeX = d3.scale.linear()
+	    .domain([0, 200])
+	    .range([0, width]);
+
+	var tempVtimeY = d3.scale.linear()
+	    .domain([-20, 120])
+	    .range([height, 0]);
+
+	var tempVtimeline = d3.svg.line()
+	    .x(function(d, i) { return tempVtimeX(i); })
+	    .y(function(d, i) { return tempVtimeY(d); });
+
+	var tempVtimesvg = d3.select("#tempVtime").append("svg")
+	    .attr("width", width + tempVtimemargin.left + tempVtimemargin.right)
+	    .attr("height", height + tempVtimemargin.top + tempVtimemargin.bottom)
+	  .append("g")
+	    .attr("transform", "translate(" + tempVtimemargin.left + "," + tempVtimemargin.top + ")");
+
+	tempVtimesvg.append("defs").append("clipPath")
+	    .attr("id", "clip")
+	  .append("rect")
+	    .attr("width", width)
+	    .attr("height", height);
+
+	tempVtimesvg.append("g")
+	    .attr("class", "x axis")
+	    .attr("transform", "translate(0," + tempVtimeY(0) + ")")
+	    .call(d3.svg.axis().scale(tempVtimeX).orient("bottom"));
+
+	tempVtimesvg.append("g")
+	    .attr("class", "y axis")
+	    .call(d3.svg.axis().scale(tempVtimeY).orient("left"));
+
+	var tempVtimepath = tempVtimesvg.append("g")
+	    .attr("clip-path", "url(#clip)")
+	  .append("path")
+	    .datum(tempVtimeData)
+	    .attr("class", "line")
+	    .attr("d", tempVtimeline);
+
+
+
+	var n = 40,
+    random = d3.random.normal(0, .2),
+    throttleVtimeData = d3.range(200).map(random);
+
+	var throttleVtimemargin = {top: 20, right: 20, bottom: 20, left: 40},
+	    width = 1200 - throttleVtimemargin.left - throttleVtimemargin.right,
+	    height = 500 - throttleVtimemargin.top - throttleVtimemargin.bottom;
+
+	var throttleVtimeX = d3.scale.linear()
+	    .domain([0, 200])
+	    .range([0, width]);
+
+	var throttleVtimeY = d3.scale.linear()
+	    .domain([0, 100])
+	    .range([height, 0]);
+
+	var throttleVtimeline = d3.svg.line()
+	    .x(function(d, i) { return throttleVtimeX(i); })
+	    .y(function(d, i) { return throttleVtimeY(d); });
+
+	var throttleVtimesvg = d3.select("#throttleVtime").append("svg")
+	    .attr("width", width + throttleVtimemargin.left + throttleVtimemargin.right)
+	    .attr("height", height + throttleVtimemargin.top + throttleVtimemargin.bottom)
+	  .append("g")
+	    .attr("transform", "translate(" + throttleVtimemargin.left + "," + throttleVtimemargin.top + ")");
+
+	throttleVtimesvg.append("defs").append("clipPath")
+	    .attr("id", "clip")
+	  .append("rect")
+	    .attr("width", width)
+	    .attr("height", height);
+
+	throttleVtimesvg.append("g")
+	    .attr("class", "x axis")
+	    .attr("transform", "translate(0," + throttleVtimeY(0) + ")")
+	    .call(d3.svg.axis().scale(throttleVtimeX).orient("bottom"));
+
+	throttleVtimesvg.append("g")
+	    .attr("class", "y axis")
+	    .call(d3.svg.axis().scale(throttleVtimeY).orient("left"));
+
+	var throttleVtimepath = throttleVtimesvg.append("g")
+	    .attr("clip-path", "url(#clip)")
+	  .append("path")
+	    .datum(throttleVtimeData)
+	    .attr("class", "line")
+	    .attr("d", throttleVtimeline);
+
 
  	socket.on('canMessageHandlerUI', function (data) {
     	console.log(data);
     	if (data.canId == 0x100)
     	{
+    		var intermittentTime = new Date();
+
+    		var timeDiff = intermittentTime - startTime;
+
     		$("#rpmVal").text(data.engineRpm);
-    		rpmArray.push(data.engineRpm);
-    		rpmTimeArray.push(date.getSeconds());
 
-   //  		Plotly.plot( RPMVTIME, [{
-			// 	x: rpmTimeArray,
-			// 	y: rpmArray }], {
-			// margin: { t: 0 } } );
-
-    		$("#tempVal").text(data.engineTemp);
-    		tempArray.push(data.engineTemp);
-    		tempTimeArray.push(date.getSeconds());
-
-   //  		Plotly.plot( TEMPVTIME, [{
-			// 	x: tempTimeArray,
-			// 	y: tempArray }], {
-			// margin: { t: 0 } } );
+    		var temp = fahrenheitToCelsis(data.engineTemp);
+    		$("#tempVal").text(temp);
+    
+		  	tempVtimeData.push(temp);
+		  // redraw the line, and slide it to the left
+		  tempVtimepath
+		      .attr("d", tempVtimeline)
+		      .attr("transform", null)
+		    .transition()
+		      .duration(500)
+		      .ease("linear")
+		      .attr("transform", "translate(" + tempVtimeX(-1) + ",0)")
+		      .each("end", tick);
+		  // pop the old data point off the front
+		  tempVtimeData.shift();
 
     		$("#throttleVal").text(data.throttlePercent);
+
+		  	throttleVtimeData.push(data.throttlePercent);
+		  // redraw the line, and slide it to the left
+		  throttleVtimepath
+		      .attr("d", throttleVtimeline)
+		      .attr("transform", null)
+		    .transition()
+		      .duration(500)
+		      .ease("linear")
+		      .attr("transform", "translate(" + throttleVtimeX(-1) + ",0)")
+		      .each("end", tick);
+		  // pop the old data point off the front
+		  throttleVtimeData.shift();
 
 
     	}
@@ -70,14 +158,30 @@ $( document ).ready(function() {
     	{
     		$("#currentGear").text(data.currentGear);
 			$("#speedVal").text(data.vehicleSpeed);
-			speedArray.push(data.vehicleSpeed);
-			speedTimeArray.push(date.getSeconds());
-
-			// Plotly.plot( SPEEDVTIME, [{
-			// 	title: 'Speed Vs Time',
-			// 	x: speedTimeArray,
-			// 	y: speedArray }], {
-			// margin: { t: 0 } } );
     	}
   });
+
+ 	function fahrenheitToCelsis(pFahrenheit)
+ 	{
+ 		return (pFahrenheit - 32 ) * (5/9);
+ 	}
+
+ 	function tick() {
+ 		// console.log("ay:");
+		 //  // push a new data point onto the back
+		 //  data.push(random());
+		 //  // redraw the line, and slide it to the left
+		 //  path
+		 //      .attr("d", line)
+		 //      .attr("transform", null)
+		 //    .transition()
+		 //      .duration(500)
+		 //      .ease("linear")
+		 //      .attr("transform", "translate(" + x(-1) + ",0)")
+		 //      .each("end", tick);
+		 //  // pop the old data point off the front
+		 //  data.shift();
+		}
+
+	//var tmr = setInterval(tick, 2000);
 });
