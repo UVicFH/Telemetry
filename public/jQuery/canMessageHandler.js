@@ -105,7 +105,7 @@ $( document ).ready(function() {
 
  	socket.on('canMessageHandlerUI', function (data) {
     	console.log(data);
-    	if (data.canId == 0x100)
+    	if (data.canId == 0x101)
     	{
     		var intermittentTime = new Date();
 
@@ -113,6 +113,13 @@ $( document ).ready(function() {
 
     		$("#rpmVal").text(data.engineRpm);
 
+
+    	$("#currentGear").text(data.currentGear);
+		$("#speedVal").text(data.vehicleSpeed);
+
+    	}
+    	else if (data.canId == 0x102)
+    	{
     		var temp = fahrenheitToCelsis(data.engineTemp);
     		$("#tempVal").text(temp);
     
@@ -128,6 +135,7 @@ $( document ).ready(function() {
 		      .each("end", tick);
 		  // pop the old data point off the front
 		  tempVtimeData.shift();
+    		// Need to implement backend :3
 
     		$("#throttleVal").text(data.throttlePercent);
 
@@ -143,22 +151,70 @@ $( document ).ready(function() {
 		      .each("end", tick);
 		  // pop the old data point off the front
 		  throttleVtimeData.shift();
-
-
     	}
     	else if (data.canId == 0x200)
     	{
-    		// Need to implement backend :3
-    	}
-    	else if (data.canId == 0x300)
-    	{
 
     	}
-    	else if (data.canId == 0x400)
-    	{
-    		$("#currentGear").text(data.currentGear);
-			$("#speedVal").text(data.vehicleSpeed);
-    	}
+
+		
+   //  	console.log(data);
+   //  	if (data.canId == 0x100)
+   //  	{
+   //  		var intermittentTime = new Date();
+
+   //  		var timeDiff = intermittentTime - startTime;
+
+   //  		$("#rpmVal").text(data.engineRpm);
+
+   //  		var temp = fahrenheitToCelsis(data.engineTemp);
+   //  		$("#tempVal").text(temp);
+    
+		 //  	tempVtimeData.push(temp);
+		 //  // redraw the line, and slide it to the left
+		 //  tempVtimepath
+		 //      .attr("d", tempVtimeline)
+		 //      .attr("transform", null)
+		 //    .transition()
+		 //      .duration(500)
+		 //      .ease("linear")
+		 //      .attr("transform", "translate(" + tempVtimeX(-1) + ",0)")
+		 //      .each("end", tick);
+		 //  // pop the old data point off the front
+		 //  tempVtimeData.shift();
+
+   //  		$("#throttleVal").text(data.throttlePercent);
+
+		 //  	throttleVtimeData.push(data.throttlePercent);
+		 //  // redraw the line, and slide it to the left
+		 //  throttleVtimepath
+		 //      .attr("d", throttleVtimeline)
+		 //      .attr("transform", null)
+		 //    .transition()
+		 //      .duration(500)
+		 //      .ease("linear")
+		 //      .attr("transform", "translate(" + throttleVtimeX(-1) + ",0)")
+		 //      .each("end", tick);
+		 //  // pop the old data point off the front
+		 //  throttleVtimeData.shift();
+			// $("#speedVal").text("100");
+
+
+   //  	}
+   //  	else if (data.canId == 0x200)
+   //  	{
+   //  		// Need to implement backend :3
+   //  	}
+   //  	else if (data.canId == 0x300)
+   //  	{
+
+   //  	}
+   //  	else if (data.canId == 0x400)
+   //  	{
+   //  		$("#currentGear").text(data.currentGear);
+			// $("#speedVal").text(data.vehicleSpeed);
+   //  	}
+
   });
 
  	function fahrenheitToCelsis(pFahrenheit)
