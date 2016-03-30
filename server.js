@@ -38,8 +38,11 @@ io.on('connection', function (socket) {
     // Might wanna do something better haha
 });
 
+//for COM port testing
+//var serialPort = new SerialPort("/dev/cu.usbmodem1421", {
+
+//for telemetry use
 var serialPort = new SerialPort("/dev/cu.SLAB_USBtoUART", {
-    //change to 115200
     baudrate: 115200,
     parser: serialport.parsers.readline("\n")
 }, false);
@@ -47,29 +50,24 @@ var serialPort = new SerialPort("/dev/cu.SLAB_USBtoUART", {
 serialPort.open(function (error) {
   if ( error ) 
   {
-    console.log('failed to open: '+error);
+    console.log(error);
   } 
   else
-   {
-    serialPort.on('open',function() {
-    console.log('Port open');
-    //serialPort.write("OMG IT WORKS\r");
+  {
+    serialPort.on('open',function() 
+    { 
+      console.log('Port open'); 
     });
   }
 });
 
-
-// serialPort.on('open',function() {
-//     console.log('Port open');
-//     serialPort.write("OMG IT WORKS\r");
-// });
 
 serialPort.on('data', function(data) {
     var jsonData = {};
     jsonData = tools.processCanMessage(data);
     if (jsonData)
     {
-        console.log(jsonData)
-        io.emit('canMessageHandlerUI', jsonData);
+      //console.log(jsonData)
+      io.emit('canMessageHandlerUI', jsonData);
     }
 });

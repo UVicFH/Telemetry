@@ -3,7 +3,6 @@ $( document ).ready(function() {
 
 	var socket = io.connect('http://0.0.0.0:3000');
 
-
 	var n = 40,
     random = d3.random.normal(0, .2),
     tempVtimeData = d3.range(200).map(random);
@@ -27,12 +26,12 @@ $( document ).ready(function() {
 	var tempVtimesvg = d3.select("#tempVtime").append("svg")
 	    .attr("width", width + tempVtimemargin.left + tempVtimemargin.right)
 	    .attr("height", height + tempVtimemargin.top + tempVtimemargin.bottom)
-	  .append("g")
+	  	.append("g")
 	    .attr("transform", "translate(" + tempVtimemargin.left + "," + tempVtimemargin.top + ")");
 
 	tempVtimesvg.append("defs").append("clipPath")
 	    .attr("id", "clip")
-	  .append("rect")
+	  	.append("rect")
 	    .attr("width", width)
 	    .attr("height", height);
 
@@ -47,12 +46,10 @@ $( document ).ready(function() {
 
 	var tempVtimepath = tempVtimesvg.append("g")
 	    .attr("clip-path", "url(#clip)")
-	  .append("path")
+	  	.append("path")
 	    .datum(tempVtimeData)
 	    .attr("class", "line")
 	    .attr("d", tempVtimeline);
-
-
 
 	var n = 40,
     random = d3.random.normal(0, .2),
@@ -77,12 +74,12 @@ $( document ).ready(function() {
 	var throttleVtimesvg = d3.select("#throttleVtime").append("svg")
 	    .attr("width", width + throttleVtimemargin.left + throttleVtimemargin.right)
 	    .attr("height", height + throttleVtimemargin.top + throttleVtimemargin.bottom)
-	  .append("g")
+	  	.append("g")
 	    .attr("transform", "translate(" + throttleVtimemargin.left + "," + throttleVtimemargin.top + ")");
 
 	throttleVtimesvg.append("defs").append("clipPath")
 	    .attr("id", "clip")
-	  .append("rect")
+	  	.append("rect")
 	    .attr("width", width)
 	    .attr("height", height);
 
@@ -97,7 +94,7 @@ $( document ).ready(function() {
 
 	var throttleVtimepath = throttleVtimesvg.append("g")
 	    .attr("clip-path", "url(#clip)")
-	  .append("path")
+	  	.append("path")
 	    .datum(throttleVtimeData)
 	    .attr("class", "line")
 	    .attr("d", throttleVtimeline);
@@ -108,14 +105,11 @@ $( document ).ready(function() {
     	if (data.canId == 0x101)
     	{
     		var intermittentTime = new Date();
-
     		var timeDiff = intermittentTime - startTime;
 
     		$("#rpmVal").text(data.engineRpm);
-
-
-    	$("#currentGear").text(data.currentGear);
-		$("#speedVal").text(data.vehicleSpeed);
+    		$("#currentGear").text(data.currentGear);
+			$("#speedVal").text(data.vehicleSpeed);
 
     	}
     	else if (data.canId == 0x102)
@@ -124,102 +118,43 @@ $( document ).ready(function() {
     		$("#tempVal").text(temp);
     
 		  	tempVtimeData.push(temp);
-		  // redraw the line, and slide it to the left
-		  tempVtimepath
-		      .attr("d", tempVtimeline)
-		      .attr("transform", null)
-		    .transition()
-		      .duration(500)
-		      .ease("linear")
-		      .attr("transform", "translate(" + tempVtimeX(-1) + ",0)")
-		      .each("end", tick);
-		  // pop the old data point off the front
-		  tempVtimeData.shift();
+		  	// redraw the line, and slide it to the left
+		  	tempVtimepath
+		    	.attr("d", tempVtimeline)
+		    	.attr("transform", null)
+		      	.transition()
+		      	.duration(500)
+		      	.ease("linear")
+		      	.attr("transform", "translate(" + tempVtimeX(-1) + ",0)")
+		      	.each("end", tick);
+		  	// pop the old data point off the front
+		  	tempVtimeData.shift();
     		// Need to implement backend :3
 
     		$("#throttleVal").text(data.throttlePercent);
 
 		  	throttleVtimeData.push(data.throttlePercent);
-		  // redraw the line, and slide it to the left
-		  throttleVtimepath
-		      .attr("d", throttleVtimeline)
-		      .attr("transform", null)
-		    .transition()
-		      .duration(500)
-		      .ease("linear")
-		      .attr("transform", "translate(" + throttleVtimeX(-1) + ",0)")
-		      .each("end", tick);
-		  // pop the old data point off the front
-		  throttleVtimeData.shift();
+		  	// redraw the line, and slide it to the left
+		  	throttleVtimepath
+		      	.attr("d", throttleVtimeline)
+		      	.attr("transform", null)
+		    	.transition()
+		      	.duration(500)
+		      	.ease("linear")
+		      	.attr("transform", "translate(" + throttleVtimeX(-1) + ",0)")
+		      	.each("end", tick);
+		  	// pop the old data point off the front
+		  	throttleVtimeData.shift();
     	}
     	else if (data.canId == 0x200)
     	{
-
+    		//Warning's not yet implemented
     	}
-
-		
-   //  	console.log(data);
-   //  	if (data.canId == 0x100)
-   //  	{
-   //  		var intermittentTime = new Date();
-
-   //  		var timeDiff = intermittentTime - startTime;
-
-   //  		$("#rpmVal").text(data.engineRpm);
-
-   //  		var temp = fahrenheitToCelsis(data.engineTemp);
-   //  		$("#tempVal").text(temp);
-    
-		 //  	tempVtimeData.push(temp);
-		 //  // redraw the line, and slide it to the left
-		 //  tempVtimepath
-		 //      .attr("d", tempVtimeline)
-		 //      .attr("transform", null)
-		 //    .transition()
-		 //      .duration(500)
-		 //      .ease("linear")
-		 //      .attr("transform", "translate(" + tempVtimeX(-1) + ",0)")
-		 //      .each("end", tick);
-		 //  // pop the old data point off the front
-		 //  tempVtimeData.shift();
-
-   //  		$("#throttleVal").text(data.throttlePercent);
-
-		 //  	throttleVtimeData.push(data.throttlePercent);
-		 //  // redraw the line, and slide it to the left
-		 //  throttleVtimepath
-		 //      .attr("d", throttleVtimeline)
-		 //      .attr("transform", null)
-		 //    .transition()
-		 //      .duration(500)
-		 //      .ease("linear")
-		 //      .attr("transform", "translate(" + throttleVtimeX(-1) + ",0)")
-		 //      .each("end", tick);
-		 //  // pop the old data point off the front
-		 //  throttleVtimeData.shift();
-			// $("#speedVal").text("100");
-
-
-   //  	}
-   //  	else if (data.canId == 0x200)
-   //  	{
-   //  		// Need to implement backend :3
-   //  	}
-   //  	else if (data.canId == 0x300)
-   //  	{
-
-   //  	}
-   //  	else if (data.canId == 0x400)
-   //  	{
-   //  		$("#currentGear").text(data.currentGear);
-			// $("#speedVal").text(data.vehicleSpeed);
-   //  	}
-
-  });
+  	});
 
  	function fahrenheitToCelsis(pFahrenheit)
  	{
- 		return (pFahrenheit - 32 ) * (5/9);
+ 		return ((pFahrenheit - 32 ) * (5/9)).toFixed(2);
  	}
 
  	function tick() {

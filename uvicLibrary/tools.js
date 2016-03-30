@@ -10,7 +10,7 @@ function messageFast_private(pCanDataArray)
 	var jsonData = {};
 	var engineThrottlePercent = pCanDataArray[0]>>1;
 	var motorThrottlePercent = pCanDataArray[1]>>1;
-	var engineRpm = pCanDataArray[3]*256+pCanDataArray[2];
+	var engineRpm = parseInt(pCanDataArray[3])*256+parseInt(pCanDataArray[2]);
 	var vehicleSpeed = pCanDataArray[4]>>1;
 	var essSoc = pCanDataArray[5]>>1;
 	var currentGear = pCanDataArray[6]&0xF;
@@ -64,75 +64,10 @@ function messageWarnings_private(pCanDataArray)
 	return jsonData;
 }
 
-
-/*
-function messageTwo_private(pCanDataArray)
-{
-	var jsonData = {};
-	// TODO m: Implement all signals
-
-	jsonData = {
-		"canId" : 0x200
-	}
-
-	return jsonData;
-}
-
-function messageThree_private(pCanDataArray)
-{
-	var jsonData = {};
-
-	var essSoc = pCanDataArray[5] >> 1;
-	console.log("ess soc" + essSoc);
-
-	jsonData = {
-		"canId" : 0x300,
-		"essSoc" : essSoc
-	}
-
-	return jsonData;
-}
-
-function messageFour_private(pCanDataArray)
-{
-	// TODO m: implement
-	var currentGear = (pCanDataArray[0] >> 2) & 0xF;
-	var vehicleSpeed = pCanDataArray[1] >> 1;
-
-	jsonData = {
-		"canId" : 0x400,
-		"currentGear" : currentGear,
-		"vehicleSpeed" : vehicleSpeed
-	}
-}
-*/
-
 function messageSelect_private(pCanId, pCanDataArray)
 {
 	var jsonReturn = {};
-/*
-	if(pCanId == 0x100)
-	{
-		jsonReturn = messageOne_private(pCanDataArray);
-	}
-	else if (pCanId == 0x200)
-	{
-		jsonReturn = messageTwo_private(pCanDataArray);
-	}
-	else if (pCanId == 0x300)
-	{
-		jsonReturn =messageThree_private(pCanDataArray);
-	}
-	else if (pCanId == 0x400)
-	{
-		jsonReturn = messageFour_private(pCanDataArray);
-	}
-	else 
-	{
-		console.log("wait wut");
-		jsonReturn = {};
-	}
-*/
+
 	if(pCanId == 0x101){
 		jsonReturn = messageFast_private(pCanDataArray);
 
@@ -149,7 +84,6 @@ function messageSelect_private(pCanId, pCanDataArray)
 
 
 // Valid Exports below
-
 module.exports = {
 	processCanMessage: function (pCanMessage)
 	{
@@ -165,13 +99,11 @@ module.exports = {
 
 			if (isNaN(match[10]))
 			{
-				//console.log("nan ayy")
 				dataArray = match.splice(2, 9);
 				dataArray[7] = 0;
 			}
 			else
 			{
-				//console.log("is a n")
 				dataArray = match.splice(2, 10);
 			}
 
@@ -179,15 +111,8 @@ module.exports = {
 		}
 		else
 		{
-			// console.log("nada")
 		}
 
 		return jsonReturnData;
 	},
-	foo: function () {
-		// whatever
-	},
-	bar: function () {
-		// and amen
-	}
 };
