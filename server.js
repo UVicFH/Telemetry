@@ -48,19 +48,14 @@ var serialPort = new SerialPort("/dev/cu.SLAB_USBtoUART", {
 }, false);
 
 serialPort.open(function (error) {
-  if ( error ) 
-  {
-    console.log(error);
-  } 
-  else
-  {
-    serialPort.on('open',function() 
-    { 
-      console.log('Port open'); 
-    });
-  }
+    if (error) {
+        console.log(error);
+    } else {
+        serialPort.on('open', function() {
+        console.log('Port open');
+        });
+    }
 });
-
 
 serialPort.on('data', function(data) {
     var jsonData = {};
