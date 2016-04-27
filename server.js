@@ -21,7 +21,7 @@ router.use(function (req,res,next) {
 });
 
 router.get("/",function(req,res){
-    res.sendFile(path + "UvicFHLanding.html");
+    res.sendFile(path + "UVicFHDashboard.html");
 });
 
 app.use("/",router);
