@@ -1,43 +1,6 @@
 // Speed Dial
-var speedDial = c3.generate({
+speedDial = c3.generate({
     bindto: '#speedDial',
-    data: {
-        columns: [
-            ['Speed', 91.4]
-        ],
-        type: 'gauge',
-        onclick: function (d, i) { console.log("onclick", d, i); },
-        onmouseover: function (d, i) { console.log("onmouseover", d, i); },
-        onmouseout: function (d, i) { console.log("onmouseout", d, i); }
-    },
-    gauge: {
-       label: {
-           format: function(value, ratio) {
-               return value;
-           },
-           show: false // to turn off the min/max labels.
-       },
-   min: 0, // 0 is default, //can handle negative min e.g. vacuum / voltage / current flow / rate of change
-   max: 100, // 100 is default
-   // units: ' %',
-   // width: 39 // for adjusting arc thickness
-    },
-    color: {
-        pattern: ['#FF0000', '#F97600', '#F6C600', '#60B044'], // the three color levels for the percentage values.
-        threshold: {
-            unit: 'percentage', // percentage is default
-            // max: 200, // 100 is default
-            values: [30, 60, 90, 100]
-        }
-    },
-    size: {
-        height: 90
-    }
-});
-
-// RPM Dial
-var rpmDial = c3.generate({
-    bindto: '#rpmDial',
     data: {
         columns: [
             ['Speed', 91.4]
@@ -55,7 +18,44 @@ var rpmDial = c3.generate({
             show: false // to turn off the min/max labels.
         },
         min: 0, // 0 is default, //can handle negative min e.g. vacuum / voltage / current flow / rate of change
-        max: 100, // 100 is default
+        max: 100 // 100 is default
+        // units: ' %',
+        // width: 39 // for adjusting arc thickness
+    },
+    color: {
+        pattern: ['#FF0000', '#F97600', '#F6C600', '#60B044'], // the three color levels for the percentage values.
+        threshold: {
+            unit: 'percentage', // percentage is default
+            // max: 200, // 100 is default
+            values: [30, 60, 90, 100]
+        }
+    },
+    size: {
+        height: 90
+    }
+});
+
+// RPM Dial
+rpmDial = c3.generate({
+    bindto: '#rpmDial',
+    data: {
+        columns: [
+            ['RPM', 91.4]
+        ],
+        type: 'gauge',
+        onclick: function (d, i) { console.log("onclick", d, i); },
+        onmouseover: function (d, i) { console.log("onmouseover", d, i); },
+        onmouseout: function (d, i) { console.log("onmouseout", d, i); }
+    },
+    gauge: {
+        label: {
+            format: function(value, ratio) {
+                return value;
+            },
+            show: false // to turn off the min/max labels.
+        },
+        min: 0, // 0 is default, //can handle negative min e.g. vacuum / voltage / current flow / rate of change
+        max: 100 // 100 is default
         // units: ' %',
         // width: 39 // for adjusting arc thickness
     },
@@ -73,11 +73,11 @@ var rpmDial = c3.generate({
 });
 
 // Throttle Dial
-var throttleDial = c3.generate({
+throttleDial = c3.generate({
     bindto: '#throttleDial',
     data: {
         columns: [
-            ['Speed', 91.4]
+            ['Throttle', 91.4]
         ],
         type: 'gauge',
         onclick: function (d, i) { console.log("onclick", d, i); },
@@ -92,7 +92,7 @@ var throttleDial = c3.generate({
             show: false // to turn off the min/max labels.
         },
         min: 0, // 0 is default, //can handle negative min e.g. vacuum / voltage / current flow / rate of change
-        max: 100, // 100 is default
+        max: 100 // 100 is default
         // units: ' %',
         // width: 39 // for adjusting arc thickness
     },
@@ -110,7 +110,7 @@ var throttleDial = c3.generate({
 });
 
 // Gear Dial
-var gearDial = c3.generate({
+gearDial = c3.generate({
     bindto: '#gearDial',
     data: {
         columns: [
@@ -129,7 +129,7 @@ var gearDial = c3.generate({
             show: false // to turn off the min/max labels.
         },
         min: 0, // 0 is default, //can handle negative min e.g. vacuum / voltage / current flow / rate of change
-        max: 100, // 100 is default
+        max: 100 // 100 is default
         // units: ' %',
         // width: 39 // for adjusting arc thickness
     },
@@ -147,11 +147,11 @@ var gearDial = c3.generate({
 });
 
 // Pack Voltage Dial
-var voltDial = c3.generate({
+voltDial = c3.generate({
     bindto: '#voltDial',
     data: {
         columns: [
-            ['Speed', 91.4]
+            ['Volt', 91.4]
         ],
         type: 'gauge',
         onclick: function (d, i) { console.log("onclick", d, i); },
@@ -166,7 +166,7 @@ var voltDial = c3.generate({
             show: false // to turn off the min/max labels.
         },
         min: 0, // 0 is default, //can handle negative min e.g. vacuum / voltage / current flow / rate of change
-        max: 100, // 100 is default
+        max: 100 // 100 is default
         // units: ' %',
         // width: 39 // for adjusting arc thickness
     },
@@ -184,11 +184,11 @@ var voltDial = c3.generate({
 });
 
 // Motor Current Dial
-var currentDial = c3.generate({
+currentDial = c3.generate({
     bindto: '#currentDial',
     data: {
         columns: [
-            ['Speed', 91.4]
+            ['Current', 91.4]
         ],
         type: 'gauge',
         onclick: function (d, i) { console.log("onclick", d, i); },
@@ -203,7 +203,7 @@ var currentDial = c3.generate({
             show: false // to turn off the min/max labels.
         },
         min: 0, // 0 is default, //can handle negative min e.g. vacuum / voltage / current flow / rate of change
-        max: 100, // 100 is default
+        max: 100 // 100 is default
         // units: ' %',
         // width: 39 // for adjusting arc thickness
     },
@@ -221,11 +221,11 @@ var currentDial = c3.generate({
 });
 
 // Fuel Consumption Dial
-var fuelDial = c3.generate({
+fuelDial = c3.generate({
     bindto: '#fuelDial',
     data: {
         columns: [
-            ['Speed', 91.4]
+            ['Fuel', 91.4]
         ],
         type: 'gauge',
         onclick: function (d, i) { console.log("onclick", d, i); },
@@ -240,7 +240,7 @@ var fuelDial = c3.generate({
             show: false // to turn off the min/max labels.
         },
         min: 0, // 0 is default, //can handle negative min e.g. vacuum / voltage / current flow / rate of change
-        max: 100, // 100 is default
+        max: 100 // 100 is default
         // units: ' %',
         // width: 39 // for adjusting arc thickness
     },
@@ -258,11 +258,11 @@ var fuelDial = c3.generate({
 });
 
 // Engine Temp Dial
-var tempDial = c3.generate({
+tempDial = c3.generate({
     bindto: '#tempDial',
     data: {
         columns: [
-            ['Speed', 91.4]
+            ['Temp', 91.4]
         ],
         type: 'gauge',
         onclick: function (d, i) { console.log("onclick", d, i); },
@@ -277,7 +277,7 @@ var tempDial = c3.generate({
             show: false // to turn off the min/max labels.
         },
         min: 0, // 0 is default, //can handle negative min e.g. vacuum / voltage / current flow / rate of change
-        max: 100, // 100 is default
+        max: 100 // 100 is default
         // units: ' %',
         // width: 39 // for adjusting arc thickness
     },
@@ -293,3 +293,9 @@ var tempDial = c3.generate({
         height: 90
     }
 });
+
+// var update = function(value) {
+//     display.load({
+//         columns: [[this.type, value]]
+//     })
+// };
