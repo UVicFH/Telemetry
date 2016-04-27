@@ -1,9 +1,14 @@
+/*
+    ToDo:
+    - Adjust colour values and transition points
+ */
+
 // Speed Dial
 speedDial = c3.generate({
     bindto: '#speedDial',
     data: {
         columns: [
-            ['Speed', 91.4]
+            ['Speed', -1]
         ],
         type: 'gauge',
         onclick: function (d, i) { console.log("onclick", d, i); },
@@ -18,7 +23,7 @@ speedDial = c3.generate({
             show: false // to turn off the min/max labels.
         },
         min: 0, // 0 is default, //can handle negative min e.g. vacuum / voltage / current flow / rate of change
-        max: 100 // 100 is default
+        max: 120 // 100 is default
         // units: ' %',
         // width: 39 // for adjusting arc thickness
     },
@@ -40,7 +45,7 @@ rpmDial = c3.generate({
     bindto: '#rpmDial',
     data: {
         columns: [
-            ['RPM', 91.4]
+            ['RPM', -1]
         ],
         type: 'gauge',
         onclick: function (d, i) { console.log("onclick", d, i); },
@@ -55,7 +60,7 @@ rpmDial = c3.generate({
             show: false // to turn off the min/max labels.
         },
         min: 0, // 0 is default, //can handle negative min e.g. vacuum / voltage / current flow / rate of change
-        max: 100 // 100 is default
+        max: 14000 // 100 is default
         // units: ' %',
         // width: 39 // for adjusting arc thickness
     },
@@ -77,7 +82,7 @@ throttleDial = c3.generate({
     bindto: '#throttleDial',
     data: {
         columns: [
-            ['Throttle', 91.4]
+            ['Throttle', -1]
         ],
         type: 'gauge',
         onclick: function (d, i) { console.log("onclick", d, i); },
@@ -114,7 +119,7 @@ gearDial = c3.generate({
     bindto: '#gearDial',
     data: {
         columns: [
-            ['Speed', 91.4]
+            ['Gear', -1]
         ],
         type: 'gauge',
         onclick: function (d, i) { console.log("onclick", d, i); },
@@ -129,7 +134,7 @@ gearDial = c3.generate({
             show: false // to turn off the min/max labels.
         },
         min: 0, // 0 is default, //can handle negative min e.g. vacuum / voltage / current flow / rate of change
-        max: 100 // 100 is default
+        max: 5 // 100 is default
         // units: ' %',
         // width: 39 // for adjusting arc thickness
     },
@@ -151,7 +156,7 @@ voltDial = c3.generate({
     bindto: '#voltDial',
     data: {
         columns: [
-            ['Volt', 91.4]
+            ['Volt', -1]
         ],
         type: 'gauge',
         onclick: function (d, i) { console.log("onclick", d, i); },
@@ -188,7 +193,7 @@ currentDial = c3.generate({
     bindto: '#currentDial',
     data: {
         columns: [
-            ['Current', 91.4]
+            ['Current', -1]
         ],
         type: 'gauge',
         onclick: function (d, i) { console.log("onclick", d, i); },
@@ -202,8 +207,8 @@ currentDial = c3.generate({
             },
             show: false // to turn off the min/max labels.
         },
-        min: 0, // 0 is default, //can handle negative min e.g. vacuum / voltage / current flow / rate of change
-        max: 100 // 100 is default
+        min: -420, // 0 is default, //can handle negative min e.g. vacuum / voltage / current flow / rate of change
+        max: 420 // 100 is default
         // units: ' %',
         // width: 39 // for adjusting arc thickness
     },
@@ -225,7 +230,7 @@ fuelDial = c3.generate({
     bindto: '#fuelDial',
     data: {
         columns: [
-            ['Fuel', 91.4]
+            ['Fuel', -1]
         ],
         type: 'gauge',
         onclick: function (d, i) { console.log("onclick", d, i); },
@@ -262,7 +267,7 @@ tempDial = c3.generate({
     bindto: '#tempDial',
     data: {
         columns: [
-            ['Temp', 91.4]
+            ['Temp', -1]
         ],
         type: 'gauge',
         onclick: function (d, i) { console.log("onclick", d, i); },
@@ -277,7 +282,7 @@ tempDial = c3.generate({
             show: false // to turn off the min/max labels.
         },
         min: 0, // 0 is default, //can handle negative min e.g. vacuum / voltage / current flow / rate of change
-        max: 100 // 100 is default
+        max: 220 // 100 is default
         // units: ' %',
         // width: 39 // for adjusting arc thickness
     },
