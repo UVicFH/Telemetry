@@ -6,6 +6,9 @@
 // Speed Dial
 speedDial = c3.generate({
     bindto: '#speedDial',
+    transition: {
+        duration: 0
+    },
     data: {
         columns: [
             ['Speed', -1]
@@ -43,6 +46,9 @@ speedDial = c3.generate({
 // RPM Dial
 rpmDial = c3.generate({
     bindto: '#rpmDial',
+    transition: {
+        duration: 0
+    },
     data: {
         columns: [
             ['RPM', -1]
@@ -80,6 +86,9 @@ rpmDial = c3.generate({
 // Throttle Dial
 throttleDial = c3.generate({
     bindto: '#throttleDial',
+    transition: {
+        duration: 0
+    },
     data: {
         columns: [
             ['Throttle', -1]
@@ -117,6 +126,9 @@ throttleDial = c3.generate({
 // Gear Dial
 gearDial = c3.generate({
     bindto: '#gearDial',
+    transition: {
+        duration: 0
+    },
     data: {
         columns: [
             ['Gear', -1]
@@ -133,6 +145,7 @@ gearDial = c3.generate({
             },
             show: false // to turn off the min/max labels.
         },
+
         min: 0, // 0 is default, //can handle negative min e.g. vacuum / voltage / current flow / rate of change
         max: 5 // 100 is default
         // units: ' %',
@@ -154,6 +167,9 @@ gearDial = c3.generate({
 // Pack Voltage Dial
 voltDial = c3.generate({
     bindto: '#voltDial',
+    transition: {
+        duration: 0
+    },
     data: {
         columns: [
             ['Volt', -1]
@@ -191,6 +207,9 @@ voltDial = c3.generate({
 // Motor Current Dial
 currentDial = c3.generate({
     bindto: '#currentDial',
+    transition: {
+        duration: 0
+    },
     data: {
         columns: [
             ['Current', -1]
@@ -228,6 +247,9 @@ currentDial = c3.generate({
 // Fuel Consumption Dial
 fuelDial = c3.generate({
     bindto: '#fuelDial',
+    transition: {
+        duration: 0
+    },
     data: {
         columns: [
             ['Fuel', -1]
@@ -265,6 +287,9 @@ fuelDial = c3.generate({
 // Engine Temp Dial
 tempDial = c3.generate({
     bindto: '#tempDial',
+    transition: {
+        duration: 0
+    },
     data: {
         columns: [
             ['Temp', -1]
